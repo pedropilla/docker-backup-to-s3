@@ -1,16 +1,16 @@
-istepanov/backup-to-s3
+pedropilla/backup-to-s3
 ======================
 
-[![Docker Stars](https://img.shields.io/docker/stars/istepanov/backup-to-s3.svg)](https://hub.docker.com/r/istepanov/backup-to-s3/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/istepanov/backup-to-s3.svg)](https://hub.docker.com/r/istepanov/backup-to-s3/)
-[![Docker Build](https://img.shields.io/docker/automated/istepanov/backup-to-s3.svg)](https://hub.docker.com/r/istepanov/backup-to-s3/)
-[![Layers](https://images.microbadger.com/badges/image/istepanov/backup-to-s3.svg)](https://microbadger.com/images/istepanov/backup-to-s3)
+[![Docker Stars](https://img.shields.io/docker/stars/pedropilla/backup-to-s3.svg)](https://hub.docker.com/r/pedropilla/backup-to-s3/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/pedropilla/backup-to-s3.svg)](https://hub.docker.com/r/pedropilla/backup-to-s3/)
+[![Docker Build](https://img.shields.io/docker/automated/pedropilla/backup-to-s3.svg)](https://hub.docker.com/r/pedropilla/backup-to-s3/)
+[![Layers](https://images.microbadger.com/badges/image/pedropilla/backup-to-s3.svg)](https://microbadger.com/images/pedropilla/backup-to-s3)
 
 Docker container that periodically backups files to Amazon S3 using [s3cmd sync](http://s3tools.org/s3cmd-sync) and cron.
 
 ### Usage
 
-    docker run -d [OPTIONS] istepanov/backup-to-s3
+    docker run -d [OPTIONS] pedropilla/backup-to-s3
 
 ### Parameters:
 
@@ -36,7 +36,7 @@ Run upload to S3 everyday at 12:00pm:
         -e S3_PATH=s3://my-bucket/backup/ \
         -e 'CRON_SCHEDULE=0 12 * * *' \
         -v /home/user/data:/data:ro \
-        istepanov/backup-to-s3
+        pedropilla/backup-to-s3
 
 Run once then delete the container:
 
@@ -45,7 +45,7 @@ Run once then delete the container:
         -e SECRET_KEY=myawssecret \
         -e S3_PATH=s3://my-bucket/backup/ \
         -v /home/user/data:/data:ro \
-        istepanov/backup-to-s3 no-cron
+        pedropilla/backup-to-s3 no-cron
 
 Run once to get from S3 then delete the container:
 
@@ -54,7 +54,7 @@ Run once to get from S3 then delete the container:
         -e SECRET_KEY=myawssecret \
         -e S3_PATH=s3://my-bucket/backup/ \
         -v /home/user/data:/data:rw \
-        istepanov/backup-to-s3 get
+        pedropilla/backup-to-s3 get
 
 Run once to delete from s3 then delete the container:
 
@@ -62,6 +62,6 @@ Run once to delete from s3 then delete the container:
         -e ACCESS_KEY=myawskey \
         -e SECRET_KEY=myawssecret \
         -e S3_PATH=s3://my-bucket/backup/ \
-        istepanov/backup-to-s3 delete
+        pedropilla/backup-to-s3 delete
 
 Security considerations: on restore, this opens up permissions on the restored files widely.

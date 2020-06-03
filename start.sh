@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
@@ -18,7 +18,7 @@ if [[ "$1" == 'no-cron' ]]; then
 elif [[ "$1" == 'get' ]]; then
     exec /get.sh
 elif [[ "$1" == 'delete' ]]; then
-    exec /usr/local/bin/s3cmd del -r "$S3_PATH"
+    exec /usr/bin/s3cmd del -r "$S3_PATH"
 else
     LOGFIFO='/var/log/cron.fifo'
     if [[ ! -e "$LOGFIFO" ]]; then
@@ -29,6 +29,6 @@ else
     CRON_ENV="$CRON_ENV\nS3_PATH='$S3_PATH'"
     echo -e "$CRON_ENV\n$CRON_SCHEDULE /sync.sh > $LOGFIFO 2>&1" | crontab -
     crontab -l
-    cron
+    crond
     tail -f "$LOGFIFO"
 fi
