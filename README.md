@@ -28,6 +28,18 @@ Docker container that periodically backups files to Amazon S3 using [s3cmd sync]
 
 ### Examples:
 
+Run upload to private S3 (minio) everyday at 12:00pm:
+
+    docker run -d \
+        -e ACCESS_KEY=privatekey \
+        -e SECRET_KEY=privatesecretkey \
+        -e PARAMS=--host=s3.privateminio.com:80 --host-bucket=privatekey --no-check-certificate --no-check-hostname --no-ssl --signature-v2 \
+        -e S3_PATH=s3://privatekey/test/ \
+        -e 'CRON_SCHEDULE=0 12 * * *' \
+        -v /home/user/data:/data:ro \
+        pedropilla/backup-to-s3
+
+
 Run upload to S3 everyday at 12:00pm:
 
     docker run -d \
